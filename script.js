@@ -66,3 +66,34 @@ const typeWriter = () => {
     }
 };
 typeWriter();
+
+// Ensure video autoplay
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('hero-video');
+    
+    function playVideo() {
+        video.play().catch(function(error) {
+            console.log("Auto-play was prevented");
+            showPlayButton();
+        });
+    }
+
+    playVideo();
+
+    video.addEventListener('loadedmetadata', function() {
+        if (video.paused) {
+            playVideo();
+        }
+    });
+
+    function showPlayButton() {
+        var playButton = document.createElement('button');
+        playButton.textContent = 'Play Video';
+        playButton.className = 'play-button';
+        playButton.onclick = function() {
+            video.play();
+            this.style.display = 'none';
+        };
+        video.parentNode.insertBefore(playButton, video.nextSibling);
+    }
+});
