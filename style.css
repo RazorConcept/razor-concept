@@ -543,4 +543,75 @@ footer {
 
 html {
     scroll-behavior: smooth;
+}* Login and Signup Page Styles */
+#login-form, #signup-form {
+    max-width: 400px;
+    margin: 120px auto 40px;
+    padding: 2rem;
+    background-color: rgba(224, 236, 247, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#login-form h1, #signup-form h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    background-color: rgba(224, 236, 247, 0.1);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--text-color);
+    box-shadow: 0 0 0 2px rgba(224, 236, 247, 0.2);
+}
+
+#login-form .cta-button, #signup-form .cta-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+#login-form p, #signup-form p {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#login-form a, #signup-form a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+#login-form a:hover, #signup-form a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    #login-form, #signup-form {
+        margin: 100px 20px 40px;
+    }
 }
