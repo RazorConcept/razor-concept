@@ -627,5 +627,5 @@ html {
     color: var(--bg-color);
 }
 main {
-    padding-top: 45px; /* Adjust based on your header height */
+    padding-top: 45px; /* Adjust based on header height */
 }
