@@ -17,10 +17,25 @@ mongoose.connect(process.env.MONGODB_URI)
     process.exit(1);
   });
 
-const User = mongoose.model('User', {
-  email: String,
-  password: String,
+const UserSchema = new mongoose.Schema({
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    lowercase: true,
+    trim: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now
+  }
 });
+
+const User = mongoose.model('User', UserSchema);
 
 // Login route
 app.post('/login', async (req, res) => {
@@ -29,14 +44,14 @@ app.post('/login', async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!user || !await bcrypt.compare(password, user.password)) {
-      return res.status(400).send('Invalid credentials');
+      return res.status(400).json({ msg: 'Invalid credentials' });
     }
 
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.json({ token });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).send('Internal server error');
+    res.status(500).json({ msg: 'Internal server error' });
   }
 });
 
@@ -48,7 +63,7 @@ app.post('/signup', async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).send('User already exists');
+      return res.status(400).json({ msg: 'User already exists' });
     }
 
     // Hash password
@@ -59,11 +74,11 @@ app.post('/signup', async (req, res) => {
     await user.save();
 
     // Create and send token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.status(201).json({ token });
   } catch (error) {
     console.error('Signup error:', error);
-    res.status(500).send('Internal server error');
+    res.status(500).json({ msg: 'Internal server error' });
   }
 });
 

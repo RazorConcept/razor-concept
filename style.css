@@ -543,7 +543,9 @@ footer {
 
 html {
     scroll-behavior: smooth;
-}* Login and Signup Page Styles */
+}
+
+/* Login and Signup Page Styles */
 #login-form, #signup-form {
     max-width: 400px;
     margin: 120px auto 40px;
@@ -614,4 +616,16 @@ html {
     #login-form, #signup-form {
         margin: 100px 20px 40px;
     }
+}
+
+.home-button {
+    background-color: transparent;
+    color: var(--text-color);
+}
+.home-button:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+main {
+    padding-top: 45px; /* Adjust based on your header height */
 }

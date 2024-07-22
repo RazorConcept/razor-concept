@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - Razor Concept</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
-    <header>
+    <header> 
         <div class="logo-container">
-            <img src="assets/images/razor-logo.png" alt="Razor Concept Logo" class="logo">
+            <img src="../assets/images/razor-logo.png" alt="Razor Concept Logo" class="logo">
             <span class="tagline">Keep it SIMPLE.</span>
         </div>
         <nav>
-            <a href="#shop" class="shop-icon"><i class="fas fa-shopping-cart"></i></a>
+            <a href="https://razor-concept.creator-spring.com" class="shop-icon"><i class="fas fa-shopping-cart"></i></a>
             <a href="login.html" class="login-button">Login</a>
             <button class="hamburger" onclick="toggleMenu()">☰</button>
             <ul class="nav-menu">
@@ -27,7 +27,7 @@
     <main>
         <section id="signup-form">
             <h1>Sign Up</h1>
-            <form id="signup" action="/signup" method="POST">
+            <form id="signup">
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" id="email" name="email" required>
@@ -69,5 +69,7 @@
             &copy; 2024 Razor Concept. All rights reserved.
         </div>
     </footer>
+
+    <script src="../script.js"></script>
 </body>
 </html>
