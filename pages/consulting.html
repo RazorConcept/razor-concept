@@ -11,16 +11,18 @@
 <body>
     <header>
         <div class="logo-container">
-            <img src="../assets/images/razor-logo.png" alt="Razor Concept Logo" class="logo">
+            <a href="../index.html">
+                <img src="../assets/images/razor-logo.png" alt="Razor Concept Logo" class="logo">
+            </a>
             <span class="tagline">Keep it SIMPLE.</span>
         </div>
         <nav>
-            <a href="#shop" class="shop-icon"><i class="fas fa-shopping-cart"></i></a>
-            <a href="#login" class="login-button">Login</a>
-            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <a href="https://razor-concept.creator-spring.com" class="shop-icon" aria-label="Shop"><i class="fas fa-shopping-cart"></i></a>
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle Menu">☰</button>
             <ul class="nav-menu">
                 <li><a href="../index.html">Home</a></li>
-                <li><a href="../index.html#community">Connect</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -32,92 +34,88 @@
         </section>
 
         <section id="service-list">
-            <div class="service-item">
-                <h2>Mentorship</h2>
-                <p>Receive personalized guidance to navigate your tech challenges and personal growth journey.</p>
-                <ul>
-                    <li>One-on-one problem-solving sessions</li>
-                    <li>Customized growth strategy development</li>
-                    <li>Expert advice on overcoming obstacles</li>
-                </ul>
-                <a href="#book-mentorship" class="button">Book a Mentorship Session</a>
+            <div class="service-item-container">
+                <div class="service-item">
+                    <h2>Mentorship</h2>
+                    <p>Receive personalized guidance to navigate your tech challenges and personal growth journey.</p>
+                    <ul>
+                        <li>One-on-one problem-solving sessions</li>
+                        <li>Customized growth strategy development</li>
+                        <li>Expert advice on overcoming obstacles</li>
+                    </ul>
+                    <div class="button-container">
+                        <a href="https://calendly.com/occam-razorconcept/30min" class="button">Book a Mentorship Session</a>
+                    </div>
+                </div>
             </div>
 
-            <div class="service-item">
-                <h2>Custom Solutions</h2>
-                <p>Leverage our expertise to create tailored tech solutions that address your unique needs.</p>
-                <ul>
-                    <li>Website development and optimization</li>
-                    <li>Mobile app creation and deployment</li>
-                    <li>Data science solutions and analytics</li>
-                </ul>
-                <a href="#request-quote" class="button">Request a Quote</a>
+            <div class="service-item-container">
+                <div class="service-item" id="custom-solutions">
+                    <h2>Custom Solutions</h2>
+                    <p>Leverage our expertise to create tailored tech solutions that address your unique needs.</p>
+                    <ul>
+                        <li>Website development and optimization</li>
+                        <li>Mobile app creation and deployment</li>
+                        <li>Data science solutions and analytics</li>
+                    </ul>
+                    <div class="button-container">
+                        <a href="mailto:solutions@razorconcept.com" class="button">Request a Quote</a>
+                    </div>
+                </div>
             </div>
         </section>
 
         <section id="approach">
             <h2>Our Consulting Approach</h2>
-            <div class="approach-step">
-                <div class="step-content">
-                    <h3>1. Start with Prayer</h3>
-                    <p>We begin each journey by seeking guidance and clarity.</p>
+            <div class="approach-steps">
+                <div class="approach-step">
+                    <img src="../assets/images/prayer.jpg" alt="Prayer and Reflection" data-src="../assets/images/prayer.jpg">
+                    <div class="approach-step-content">
+                        <h3>1. Start with Prayer</h3>
+                        <p>We begin each journey by seeking guidance and clarity.</p>
+                    </div>
                 </div>
-                <div class="step-image">
-                    <img src="../assets/images/prayer.jpg" alt="Prayer and Reflection">
+                <div class="approach-step">
+                    <img src="../assets/images/declare.png" alt="Declaring the Problem" data-src="../assets/images/declare.png">
+                    <div class="approach-step-content">
+                        <h3>2. Declare the Problem</h3>
+                        <p>Clearly articulate the challenge we're facing.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="approach-step">
-                <div class="step-content">
-                    <h3>2. Declare the Problem</h3>
-                    <p>Clearly articulate the challenge we're facing.</p>
+                <div class="approach-step">
+                    <img src="../assets/images/gatherinformation.jpg" alt="Gathering Information" data-src="../assets/images/gatherinformation.jpg">
+                    <div class="approach-step-content">
+                        <h3>3. Gather Critical Information</h3>
+                        <p>Collect all necessary data and insights related to the issue.</p>
+                    </div>
                 </div>
-                <div class="step-image">
-                    <img src="../assets/images/declare.png" alt="Declaring the Problem">
+                <div class="approach-step">
+                    <img src="../assets/images/list.jpg" alt="Listing Simple Solutions" data-src="../assets/images/list.jpg">
+                    <div class="approach-step-content">
+                        <h3>4. List Simple Solutions</h3>
+                        <p>Brainstorm straightforward approaches to address the problem.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="approach-step">
-                <div class="step-content">
-                    <h3>3. Gather Critical Information</h3>
-                    <p>Collect all necessary data and insights related to the issue.</p>
+                <div class="approach-step">
+                    <img src="../assets/images/simple.jpg" alt="Choosing a Simple Solution" data-src="../assets/images/simple.jpg">
+                    <div class="approach-step-content">
+                        <h3>5. Pick the Simple</h3>
+                        <p>Select the most straightforward and effective solution.</p>
+                    </div>
                 </div>
-                <div class="step-image">
-                    <img src="../assets/images/gatherinformation.jpg" alt="Gathering Information">
+                <div class="approach-step">
+                    <img src="../assets/images/try.jpg" alt="Trying the Solution" data-src="../assets/images/try.jpg">
+                    <div class="approach-step-content">
+                        <h3>6. Try the Solution</h3>
+                        <p>Implement the chosen solution and observe its effects.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="approach-step">
-                <div class="step-content">
-                    <h3>4. List Simple Solutions</h3>
-                    <p>Brainstorm straightforward approaches to address the problem.</p>
-                </div>
-                <div class="step-image">
-                    <img src="../assets/images/list.jpg" alt="Listing Simple Solutions">
-                </div>
-            </div>
-            <div class="approach-step">
-                <div class="step-content">
-                    <h3>5. Pick the Simple</h3>
-                    <p>Select the most straightforward and effective solution.</p>
-                </div>
-                <div class="step-image">
-                    <img src="../assets/images/simple.jpg" alt="Choosing a Simple Solution">
-                </div>
-            </div>
-            <div class="approach-step">
-                <div class="step-content">
-                    <h3>6. Try the Solution</h3>
-                    <p>Implement the chosen solution and observe its effects.</p>
-                </div>
-                <div class="step-image">
-                    <img src="../assets/images/try.jpg" alt="Trying the Solution">
-                </div>
-            </div>
-            <div class="approach-step">
-                <div class="step-content">
-                    <h3>7. Check and Fix</h3>
-                    <p>Evaluate the results and make necessary adjustments.</p>
-                </div>
-                <div class="step-image">
-                    <img src="../assets/images/checkfix.png" alt="Checking and Fixing">
+                <div class="approach-step">
+                    <img src="../assets/images/checkfix.png" alt="Checking and Fixing" data-src="../assets/images/checkfix.png">
+                    <div class="approach-step-content">
+                        <h3>7. Check and Fix</h3>
+                        <p>Evaluate the results and make necessary adjustments.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -135,19 +133,24 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="../index.html">Home</a></li>
-                    <li><a href="#about">Our Approach</a></li>
-                    <li><a href="#services">Solutions</a></li>
-                    <li><a href="#community">Join the Community</a></li>
-                    <li><a href="#contact">Get Help</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Stay Connected</h3>
+                <h3>Connect With Us</h3>
                 <div class="social-icons">
-                    <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitch"></i></a>
+                    <a href="https://www.youtube.com/@Razor_Concept" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.tiktok.com/@razor_concept" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.twitch.tv/razor_concept" aria-label="Twitch"><i class="fab fa-twitch"></i></a>
                 </div>
+            </div>
+            <div class="footer-section">
+                <h3>Support Us</h3>
+                <p>Help us continue simplifying the complex.</p>
+                <a href="https://www.patreon.com/razorconcept" class="button patreon-button">
+                    <i class="fab fa-patreon"></i> Become a Patron
+                </a>
             </div>
         </div>
         <div class="copyright">

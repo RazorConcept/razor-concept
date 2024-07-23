@@ -1,13 +1,3 @@
-// Utility function to get the server URL
-const getServerUrl = () => {
-    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
-        return '';
-    }
-    return 'http://localhost:3000';
-};
-
-const serverUrl = getServerUrl();
-
 // Mobile menu toggle
 function toggleMenu() {
     const navMenu = document.querySelector('.nav-menu');
@@ -18,8 +8,15 @@ function toggleMenu() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        const headerOffset = 60;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
         });
     });
 });
@@ -29,58 +26,51 @@ window.addEventListener('scroll', () => {
     const heroContent = document.querySelector('.hero-content');
     if (heroContent) {
         const scrollPosition = window.pageYOffset;
-        heroContent.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        heroContent.style.transform = `translateY(${scrollPosition * 0.4}px)`;
     }
 });
 
 // Animate elements on scroll
 const animateOnScroll = () => {
-    const elements = document.querySelectorAll('.service-item, .social-button');
+    const elements = document.querySelectorAll('.service-item, .social-button, .approach-step, .contact-method');
     elements.forEach(element => {
         const elementTop = element.getBoundingClientRect().top;
         const elementBottom = element.getBoundingClientRect().bottom;
         if (elementTop < window.innerHeight && elementBottom > 0) {
-            element.style.opacity = '1';
-            element.style.transform = 'translateY(0)';
+            element.classList.add('fade-in-up');
         }
     });
 };
 
 window.addEventListener('scroll', animateOnScroll);
+window.addEventListener('load', animateOnScroll);
 
-// Initialize animations on page load
-window.addEventListener('load', () => {
-    animateOnScroll();
-});
-
-// Add a subtle hover effect to buttons
-const buttons = document.querySelectorAll('.cta-button, .button');
+// Add a subtle touch effect to buttons for mobile
+const buttons = document.querySelectorAll('.cta-button, .button, .social-button');
 buttons.forEach(button => {
-    button.addEventListener('mouseover', () => {
-        button.style.transform = 'scale(1.05)';
+    button.addEventListener('touchstart', () => {
+        button.style.transform = 'scale(0.95)';
     });
-    button.addEventListener('mouseout', () => {
+    button.addEventListener('touchend', () => {
         button.style.transform = 'scale(1)';
     });
 });
 
-// Add a typing effect to the hero headline
-const heroHeadline = document.querySelector('.hero-content h1');
-if (heroHeadline) {
-    const text = heroHeadline.textContent;
-    heroHeadline.textContent = '';
-    let i = 0;
-    const typeWriter = () => {
-        if (i < text.length) {
-            heroHeadline.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 100);
-        }
-    };
-    typeWriter();
+// Typing effect for hero text
+const heroText = "Simple Steps, Smart Solutions";
+const typingSpeed = 50; // Adjust this value to change typing speed (lower is faster)
+let i = 0;
+
+function typeWriter() {
+    const typingElement = document.getElementById('typing-text');
+    if (typingElement && i < heroText.length) {
+        typingElement.innerHTML += heroText.charAt(i);
+        i++;
+        setTimeout(typeWriter, typingSpeed);
+    }
 }
 
-// Ensure video autoplay
+// Ensure video autoplay and implement typing effect
 document.addEventListener('DOMContentLoaded', function() {
     var video = document.getElementById('hero-video');
     if (video) {
@@ -110,100 +100,97 @@ document.addEventListener('DOMContentLoaded', function() {
             video.parentNode.insertBefore(playButton, video.nextSibling);
         }
     }
+
+    // Start typing effect
+    typeWriter();
 });
 
-// Success message function
-function showSuccessMessage(message) {
-    const successDiv = document.createElement('div');
-    successDiv.textContent = message;
-    successDiv.className = 'success-message';
-    document.body.appendChild(successDiv);
-    setTimeout(() => {
-        successDiv.classList.add('show');
-    }, 10);
-    setTimeout(() => {
-        successDiv.classList.remove('show');
-        setTimeout(() => {
-            document.body.removeChild(successDiv);
-        }, 300);
-    }, 3000);
+// Make logo navigate to index.html or scroll to top if already on index
+const logo = document.querySelector('.logo-container a');
+if (logo) {
+    logo.addEventListener('click', function(e) {
+        e.preventDefault();
+        const currentPath = window.location.pathname;
+        if (currentPath.endsWith('index.html') || currentPath === '/' || currentPath === '') {
+            // On the index page, scroll to top
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else if (currentPath.includes('/pages/')) {
+            // In a subdirectory, go up one level
+            window.location.href = '../index.html';
+        } else {
+            // Not in a subdirectory, just go to index.html
+            window.location.href = 'index.html';
+        }
+    });
 }
 
-// Login and Signup form handling
-document.addEventListener('DOMContentLoaded', function() {
-    // Login form handling
-    const loginForm = document.getElementById('login');
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+// Add pulsing effect to CTA buttons
+const ctaButtons = document.querySelectorAll('.cta-button');
+ctaButtons.forEach(button => {
+    button.classList.add('pulse');
+});
 
-            try {
-                const response = await fetch(`${serverUrl}/login`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    localStorage.setItem('token', data.token);
-                    showSuccessMessage('Login successful! Redirecting to dashboard...');
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 2000);
-                } else {
-                    const errorData = await response.text();
-                    alert(`Login failed: ${errorData}`);
-                }
-            } catch (error) {
-                console.error('Login error:', error);
-                alert('An error occurred during login. Please try again.');
+// Interactive form validation for contact page
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let isValid = true;
+        const inputs = this.querySelectorAll('input, textarea');
+        inputs.forEach(input => {
+            if (!input.value.trim()) {
+                isValid = false;
+                input.classList.add('invalid');
+            } else {
+                input.classList.remove('invalid');
             }
         });
-    }
+        if (isValid) {
+            // Here you would typically send the form data to a server
+            alert('Thank you for your message! We will get back to you soon.');
+            this.reset();
+        } else {
+            alert('Please fill in all fields.');
+        }
+    });
+}
 
-    // Signup form handling
-    const signupForm = document.getElementById('signup');
-    if (signupForm) {
-        signupForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
+// Add touch-based interactivity for mobile devices
+document.addEventListener('touchstart', function() {}, true);
 
-            if (password !== confirmPassword) {
-                alert('Passwords do not match');
-                return;
-            }
+// Lazy loading for images
+const images = document.querySelectorAll('img[data-src]');
+const config = {
+    rootMargin: '50px 0px',
+    threshold: 0.01
+};
 
-            try {
-                const response = await fetch(`${serverUrl}/signup`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email, password }),
-                });
+let imageObserver = new IntersectionObserver((entries, self) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            preloadImage(entry.target);
+            self.unobserve(entry.target);
+        }
+    });
+}, config);
 
-                if (response.ok) {
-                    const data = await response.json();
-                    localStorage.setItem('token', data.token);
-                    showSuccessMessage('Signup successful! Welcome to Razor Concept!');
-                    setTimeout(() => {
-                        window.location.href = 'dashboard.html';
-                    }, 2000);
-                } else {
-                    const errorData = await response.text();
-                    alert(`Signup failed: ${errorData}`);
-                }
-            } catch (error) {
-                console.error('Signup error:', error);
-                alert('An error occurred during signup. Please try again.');
-            }
-        });
-    }
+images.forEach(image => {
+    imageObserver.observe(image);
+});
+
+function preloadImage(img) {
+    const src = img.getAttribute('data-src');
+    if (!src) { return; }
+    img.src = src;
+}
+
+// Add more interactivity to service items
+const serviceItems = document.querySelectorAll('.service-item');
+serviceItems.forEach(item => {
+    item.addEventListener('click', () => {
+        item.classList.toggle('expanded');
+    });
 });
