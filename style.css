@@ -1,12 +1,15 @@
-/* Global Variables */
+/* ======= Global Variables ======= */
 :root {
     --bg-color: #0f0f0f;
     --text-color: #ffffff;
     --accent-color: #e0ecf7;
+    --primary-color: #3a86ff;
+    --secondary-color: #ff006e;
+    --success-color: #4caf50;
     --transition: all 0.3s ease;
 }
 
-/* Reset and Base Styles */
+/* ======= Reset and Base Styles ======= */
 * {
     margin: 0;
     padding: 0;
@@ -20,7 +23,40 @@ body {
     line-height: 1.6;
 }
 
-/* Header Styles */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ======= Typography ======= */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--text-color);
+}
+
+/* ======= Layout ======= */
+main {
+    padding-top: 80px; /* Adjust based on header height */
+}
+
+section {
+    padding: 4rem 5%;
+    margin: 2rem 0;
+    background-color: rgba(224, 236, 247, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ======= Header Styles ======= */
 header {
     position: fixed;
     top: 0;
@@ -50,7 +86,7 @@ header {
     color: var(--accent-color);
 }
 
-/* Navigation Styles */
+/* ======= Navigation Styles ======= */
 nav {
     display: flex;
     align-items: center;
@@ -78,8 +114,6 @@ nav {
 
 .nav-menu a {
     color: var(--text-color);
-    text-decoration: none;
-    transition: var(--transition);
 }
 
 .nav-menu a:hover {
@@ -100,19 +134,24 @@ nav {
     color: var(--accent-color);
 }
 
-.login-button {
+.login-button, .home-button {
     background-color: var(--accent-color);
     color: var(--bg-color);
     padding: 0.5rem 1rem;
     border-radius: 5px;
 }
 
-.login-button:hover {
+.login-button:hover, .home-button:hover {
     background-color: var(--text-color);
     color: var(--bg-color);
 }
 
-/* Hero Section Styles */
+.home-button {
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+/* ======= Hero Section Styles ======= */
 #hero {
     height: 100vh;
     display: flex;
@@ -151,21 +190,28 @@ nav {
     margin-bottom: 2rem;
 }
 
-/* Home Page Section Styles */
-section {
-    padding: 4rem 5%;
-    margin: 2rem 0;
-    background-color: rgba(224, 236, 247, 0.05);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* ======= Button Styles ======= */
+.cta-button, .button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: var(--transition);
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
 }
 
-h2 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    text-align: center;
+.cta-button:hover, .button:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(224, 236, 247, 0.2);
 }
 
+/* ======= Home Page Section Styles ======= */
 #about, #why-us, #community, #cta {
     text-align: center;
 }
@@ -242,7 +288,7 @@ h2 {
     margin-bottom: 0.5rem;
 }
 
-/* Consulting Page Specific Styles */
+/* ======= Consulting Page Specific Styles ======= */
 #consulting-hero {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -284,7 +330,7 @@ h2 {
     margin-top: auto;
 }
 
-/* Approach Section Styles */
+/* ======= Approach Section Styles ======= */
 #approach {
     background-color: #1a2a3a;
     padding: 6rem 5%;
@@ -321,7 +367,6 @@ h2 {
     flex-direction: column;
     justify-content: center;
     padding: 2rem;
-    
 }
 
 .step-image {
@@ -342,7 +387,6 @@ h2 {
 
 .step-image:hover img {
     transform: scale(1.05);
-    
 }
 
 .step-content {
@@ -387,26 +431,7 @@ h2 {
     flex-direction: row-reverse;
 }
 
-/* Button Styles */
-.cta-button, .button {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-    padding: 0.8rem 1.5rem;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: var(--transition);
-    font-weight: bold;
-    margin-top: 1rem;
-}
-
-.cta-button:hover, .button:hover {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    transform: translateY(-3px);
-}
-
-/* Footer Styles */
+/* ======= Footer Styles ======= */
 footer {
     background-color: rgba(15, 15, 15, 0.9);
     padding: 2rem 5%;
@@ -433,16 +458,6 @@ footer {
     padding: 0;
 }
 
-.footer-section a {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.footer-section a:hover {
-    color: var(--text-color);
-}
-
 .social-icons a {
     color: var(--text-color);
     font-size: 1.5rem;
@@ -460,7 +475,220 @@ footer {
     color: var(--text-color);
 }
 
-/* Media Queries */
+/* ======= Login and Signup Page Styles ======= */
+#login-form, #signup-form {
+    max-width: 400px;
+    margin: 120px auto 40px;
+    padding: 2rem;
+    background-color: rgba(224, 236, 247, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: glow 3s infinite;
+}
+
+#login-form h1, #signup-form h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    background-color: rgba(224, 236, 247, 0.1);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--text-color);
+    box-shadow: 0 0 0 2px rgba(224, 236, 247, 0.2);
+}
+
+#login-form .cta-button, #signup-form .cta-button {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-top: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+#login-form p, #signup-form p {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+#login-form a, #signup-form a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+#login-form a:hover, #signup-form a:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+/* ======= Dashboard Styles ======= */
+#dashboard {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: rgba(224, 236, 247, 0.05);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.profile-card {
+    text-align: center;
+    margin-bottom: 2rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header {
+    margin-bottom: 1rem;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 0 20px rgba(224, 236, 247, 0.5);
+}
+
+#user-name {
+    margin: 1rem 0 0.5rem;
+    color: var(--text-color);
+    font-size: 2rem;
+}
+
+#user-level {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.progress-bar {
+    background-color: rgba(224, 236, 247, 0.1);
+    border-radius: 10px;
+    height: 20px;
+    margin: 1rem 0;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.progress {
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-color));
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+    box-shadow: 0 0 10px rgba(224, 236, 247, 0.5);
+}
+
+.xp-info {
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+.achievements, .stats {
+    margin-top: 2rem;
+}
+
+.achievement-grid, .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.achievement, .stat-item {
+    background-color: rgba(224, 236, 247, 0.1);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.achievement:hover, .stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(224, 236, 247, 0.2);
+}
+
+.achievement i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 0.5rem;
+}
+
+.achievement.locked i {
+    color: var(--text-color);
+    opacity: 0.5;
+}
+
+.achievement p, .stat-item p {
+    margin-top: 0.5rem;
+}
+
+.stat-item h3 {
+    font-size: 1rem;
+    color: var(--accent-color);
+}
+
+.stat-item p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+/* ======= Animations ======= */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px var(--primary-color);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--secondary-color);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--primary-color);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.cta-button {
+    animation: pulse 2s infinite;
+}
+
+/* ======= Media Queries ======= */
 @media (max-width: 768px) {
     .nav-menu {
         display: none;
@@ -507,6 +735,18 @@ footer {
         height: 1.5rem;
         bottom: -1.5rem;
     }
+
+    #login-form, #signup-form {
+        margin: 100px 20px 40px;
+    }
+
+    #dashboard {
+        padding: 1rem;
+    }
+
+    .achievement-grid, .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 
 @media (min-width: 769px) {
@@ -523,7 +763,7 @@ footer {
     }
 }
 
-/* Scrollbar and Smooth Scrolling Styles */
+/* ======= Scrollbar Styles ======= */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -541,91 +781,15 @@ footer {
     background: var(--text-color);
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
-/* Login and Signup Page Styles */
-#login-form, #signup-form {
-    max-width: 400px;
-    margin: 120px auto 40px;
-    padding: 2rem;
-    background-color: rgba(224, 236, 247, 0.05);
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-#login-form h1, #signup-form h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent-color);
-    text-align: center;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--accent-color);
-}
-
-.form-group input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid var(--accent-color);
+.logout-button {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
-    background-color: rgba(224, 236, 247, 0.1);
-    color: var(--text-color);
-    transition: var(--transition);
-}
-
-.form-group input:focus {
-    outline: none;
-    border-color: var(--text-color);
-    box-shadow: 0 0 0 2px rgba(224, 236, 247, 0.2);
-}
-
-#login-form .cta-button, #signup-form .cta-button {
-    width: 100%;
-    padding: 1rem;
-    font-size: 1.1rem;
-    text-align: center;
-    margin-top: 1rem;
-}
-
-#login-form p, #signup-form p {
-    margin-top: 1rem;
-    text-align: center;
-}
-
-#login-form a, #signup-form a {
-    color: var(--accent-color);
     text-decoration: none;
     transition: var(--transition);
 }
 
-#login-form a:hover, #signup-form a:hover {
-    color: var(--text-color);
-    text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-    #login-form, #signup-form {
-        margin: 100px 20px 40px;
-    }
-}
-
-.home-button {
-    background-color: transparent;
-    color: var(--text-color);
-}
-.home-button:hover {
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-}
-main {
-    padding-top: 45px; /* Adjust based on header height */
+.logout-button:hover {
+    background-color: #333333;
 }

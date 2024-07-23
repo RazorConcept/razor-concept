@@ -1,1 +1,82 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Razor Concept</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <header> 
+        <div class="logo-container">
+            <img src="../assets/images/razor-logo.png" alt="Razor Concept Logo" class="logo">
+            <span class="tagline">Keep it SIMPLE.</span>
+        </div>
+        <nav>
+            <a href="https://razor-concept.creator-spring.com" class="shop-icon"><i class="fas fa-shopping-cart"></i></a>
+            <a href="#" id="logout-button" class="logout-button">Log Out</a>
+            <button class="hamburger" onclick="toggleMenu()">☰</button>
+            <ul class="nav-menu">
+                <li><a href="pages/consulting.html">Consulting</a></li>
+                <li><a href="#community">Connect</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="dashboard">
+        <section class="profile-card">
+            <div class="profile-header">
+                <img src="https://via.placeholder.com/150" alt="Profile Picture" class="profile-pic">
+                <h1 id="user-name">User Name</h1>
+                <p id="user-level">Level 1</p>
+            </div>
+            <div class="progress-bar">
+                <div class="progress" style="width: 60%;"></div>
+            </div>
+            <p class="xp-info">600 / 1000 XP to next level</p>
+        </section>
+
+        <section class="achievements">
+            <h2>Achievements</h2>
+            <div class="achievement-grid">
+                <div class="achievement">
+                    <i class="fas fa-trophy"></i>
+                    <p>First Login</p>
+                </div>
+                <div class="achievement locked">
+                    <i class="fas fa-lock"></i>
+                    <p>Complete Profile</p>
+                </div>
+                <div class="achievement locked">
+                    <i class="fas fa-lock"></i>
+                    <p>First Project</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stats">
+            <h2>Stats</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3>Projects Completed</h3>
+                    <p>0</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Days Active</h3>
+                    <p>1</p>
+                </div>
+                <div class="stat-item">
+                    <h3>Skills Learned</h3>
+                    <p>0</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Razor Concept. All rights reserved.</p>
+    </footer>
+</body>
+</html>

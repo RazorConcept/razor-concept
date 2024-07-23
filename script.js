@@ -1,3 +1,13 @@
+// Utility function to get the server URL
+const getServerUrl = () => {
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+        return '';
+    }
+    return 'http://localhost:3000';
+};
+
+const serverUrl = getServerUrl();
+
 // Mobile menu toggle
 function toggleMenu() {
     const navMenu = document.querySelector('.nav-menu');
@@ -8,7 +18,6 @@ function toggleMenu() {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
@@ -103,6 +112,23 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+// Success message function
+function showSuccessMessage(message) {
+    const successDiv = document.createElement('div');
+    successDiv.textContent = message;
+    successDiv.className = 'success-message';
+    document.body.appendChild(successDiv);
+    setTimeout(() => {
+        successDiv.classList.add('show');
+    }, 10);
+    setTimeout(() => {
+        successDiv.classList.remove('show');
+        setTimeout(() => {
+            document.body.removeChild(successDiv);
+        }, 300);
+    }, 3000);
+}
+
 // Login and Signup form handling
 document.addEventListener('DOMContentLoaded', function() {
     // Login form handling
@@ -114,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const password = document.getElementById('password').value;
 
             try {
-                const response = await fetch('/login', {
+                const response = await fetch(`${serverUrl}/login`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -125,10 +151,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     const data = await response.json();
                     localStorage.setItem('token', data.token);
-                    window.location.href = '/dashboard.html'; // Redirect to dashboard
+                    showSuccessMessage('Login successful! Redirecting to dashboard...');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
                 } else {
-                    const errorData = await response.json();
-                    alert(`Login failed: ${errorData.msg}`);
+                    const errorData = await response.text();
+                    alert(`Login failed: ${errorData}`);
                 }
             } catch (error) {
                 console.error('Login error:', error);
@@ -152,7 +181,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             try {
-                const response = await fetch('/signup', {
+                const response = await fetch(`${serverUrl}/signup`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -163,10 +192,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (response.ok) {
                     const data = await response.json();
                     localStorage.setItem('token', data.token);
-                    window.location.href = '/dashboard.html'; // Redirect to dashboard
+                    showSuccessMessage('Signup successful! Welcome to Razor Concept!');
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 2000);
                 } else {
-                    const errorData = await response.json();
-                    alert(`Signup failed: ${errorData.msg}`);
+                    const errorData = await response.text();
+                    alert(`Signup failed: ${errorData}`);
                 }
             } catch (error) {
                 console.error('Signup error:', error);
