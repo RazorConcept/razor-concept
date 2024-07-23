@@ -46,7 +46,7 @@ a:hover, a:focus {
 
 /* ====== LAYOUT ====== */
 main {
-    padding-top: 70px;
+    padding-top: 80px;
 }
 
 section {
@@ -69,6 +69,7 @@ header {
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
+    height: 60px;
 }
 
 .logo-container {
@@ -77,9 +78,9 @@ header {
 }
 
 .logo {
-    width: 80px;
+    width: 50px;
     height: auto;
-    margin-right: 1rem;
+    margin-right: 0.5rem;
     transition: var(--transition);
 }
 
@@ -88,7 +89,7 @@ header {
 }
 
 .tagline {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--accent-color);
 }
 
@@ -122,7 +123,7 @@ nav {
 .nav-menu a {
     color: var(--text-color);
     transition: var(--transition);
-    padding: 0.5rem;
+    padding: 0.7rem;
     display: block;
 }
 
@@ -136,9 +137,9 @@ nav {
     background: none;
     border: none;
     color: var(--text-color);
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     transition: var(--transition);
 }
 
@@ -198,30 +199,37 @@ nav {
     padding: 2rem;
     background-color: rgba(15, 15, 15, 0.7);
     border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.hero-line {
+    display: block;
 }
 
 /* ====== SERVICE SECTION STYLES ====== */
 #service-list {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     gap: 2rem;
 }
 
 .service-item-container {
-    display: flex;
-    flex: 1;
+    width: 100%;
 }
 
 .service-item {
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
     background-color: rgba(224, 236, 247, 0.1);
     border-radius: 10px;
     padding: 2rem;
@@ -233,21 +241,28 @@ nav {
     box-shadow: 0 5px 15px rgba(224, 236, 247, 0.2);
 }
 
-.service-item h2 {
+.service-item h2, .service-item h3 {
     margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
 .service-item p {
-    margin-bottom: 1rem;
-}
-
-.service-item ul {
     margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
+    flex-grow: 1;
 }
 
 .button-container {
     margin-top: auto;
+    text-align: left;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    white-space: nowrap;
+    max-width: 100%;
 }
 
 /* ====== COMMUNITY SECTION STYLES ====== */
@@ -359,7 +374,7 @@ footer {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
 .approach-step {
@@ -456,10 +471,12 @@ footer {
 
     #service-list {
         flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
     }
 
     .service-item-container {
-        flex: 1;
+        flex: 0 1 calc(50% - 1rem);
     }
 
     .social-links {
@@ -481,6 +498,18 @@ footer {
 }
 
 @media (min-width: 1024px) {
+    header {
+        height: 80px;
+    }
+
+    .logo {
+        width: 70px;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+
     .nav-menu {
         display: flex;
     }
@@ -493,8 +522,34 @@ footer {
         display: none;
     }
 
+    .shop-icon, .hamburger {
+        font-size: 1.8rem;
+    }
+
+    #service-list {
+        justify-content: space-between;
+    }
+
+    .service-item-container {
+        flex: 0 1 calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+    }
+
+    .approach-steps {
+        justify-content: space-between;
+    }
+
     .approach-step {
         flex-basis: calc(33.33% - 1rem);
+        max-width: calc(33.33% - 1rem);
+    }
+}
+
+@media (min-width: 1200px) {
+    .service-item-container,
+    .approach-step {
+        flex-basis: calc(33.33% - 2rem);
+        max-width: calc(33.33% - 2rem);
     }
 }
 
@@ -528,4 +583,47 @@ footer {
 
 .pulse {
     animation: pulse 2s infinite;
+}
+
+/* ====== ACCESSIBILITY STYLES ====== */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ====== PRINT STYLES ====== */
+@media print {
+    body {
+        background-color: white;
+        color: black;
+    }
+
+    header, footer, nav, .cta-button, .social-button {
+        display: none;
+    }
+
+    main {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1, h2, h3 {
+        page-break-after: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 2cm;
+    }
 }

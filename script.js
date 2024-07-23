@@ -57,15 +57,20 @@ buttons.forEach(button => {
 });
 
 // Typing effect for hero text
-const heroText = "Simple Steps, Smart Solutions";
+const heroText = "Simple Steps,<br>Smart Solutions";
 const typingSpeed = 50; // Adjust this value to change typing speed (lower is faster)
 let i = 0;
 
 function typeWriter() {
     const typingElement = document.getElementById('typing-text');
     if (typingElement && i < heroText.length) {
-        typingElement.innerHTML += heroText.charAt(i);
-        i++;
+        if (heroText.substring(i, i + 4) === '<br>') { // Check for the <br> tag
+            typingElement.innerHTML += '<br>';
+            i += 4; // Skip over the <br> tag
+        } else {
+            typingElement.innerHTML += heroText.charAt(i);
+            i++;
+        }
         setTimeout(typeWriter, typingSpeed);
     }
 }
