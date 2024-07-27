@@ -138,18 +138,30 @@ ctaButtons.forEach(button => {
     button.classList.add('pulse');
 });
 
-// Interactive form validation for contact page
+// Interactive form validation and submission for contact page
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.querySelector('form[name="contact"]');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simulate form submission
-            setTimeout(() => {
+            // Create a new FormData object
+            const formData = new FormData(this);
+
+            // Submit the form data to Netlify
+            fetch('/', {
+                method: 'POST',
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+            .then(() => {
                 alert('Thank you for your message! We will get back to you soon.');
                 contactForm.reset();
-            }, 1000);
+            })
+            .catch((error) => {
+                alert('Oops! There was a problem submitting your form');
+                console.log(error);
+            });
         });
     }
 });

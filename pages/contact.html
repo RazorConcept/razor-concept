@@ -35,7 +35,8 @@
 
         <section id="contact-form">
             <h2>Get in Touch</h2>
-            <form name="contact" netlify>
+            <form name="contact" method="POST" data-netlify="true">
+                <input type="hidden" name="form-name" value="contact">
                 <p class="form-group">
                     <label for="name">Name
                         <input type="text" id="name" name="name" required>
@@ -100,7 +101,7 @@
             <div class="footer-section">
                 <h3>Support Us</h3>
                 <p>Help us continue simplifying the complex.</p>
-                <a href="https://www.patreon.com/razorconcept" class="button patreon-button">
+                <a href="patreon.com/Razor_Concept" class="button patreon-button">
                     <i class="fab fa-patreon"></i> Become a Patron
                 </a>
             </div>
