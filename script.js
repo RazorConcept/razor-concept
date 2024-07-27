@@ -139,29 +139,20 @@ ctaButtons.forEach(button => {
 });
 
 // Interactive form validation for contact page
-const contactForm = document.getElementById('contact-form');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        let isValid = true;
-        const inputs = this.querySelectorAll('input, textarea');
-        inputs.forEach(input => {
-            if (!input.value.trim()) {
-                isValid = false;
-                input.classList.add('invalid');
-            } else {
-                input.classList.remove('invalid');
-            }
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.querySelector('form[name="contact"]');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission (replace with actual submission logic)
+            setTimeout(() => {
+                alert('Thank you for your message! We will get back to you soon.');
+                contactForm.reset();
+            }, 1000);
         });
-        if (isValid) {
-            // Here you would typically send the form data to a server
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        } else {
-            alert('Please fill in all fields.');
-        }
-    });
-}
+    }
+});
 
 // Add touch-based interactivity for mobile devices
 document.addEventListener('touchstart', function() {}, true);
